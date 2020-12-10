@@ -1,0 +1,4 @@
+{
+    "/pragmatic/api/v1/rest/tasks/": "/tasks",
+    "/pragmatic/api/v1/rest/users/:id": "/users/:id"
+}

@@ -1,0 +1,19 @@
+{
+    "name": "@pragmatic/tasks",
+    "version": "1.0.0",
+    "description": "Pragmatic Tasks project",
+    "main": "src/index.ts",
+    "types": "build/types/index.d.ts",
+    "author": "FeHHix",
+    "license": "MIT",
+    "scripts": {
+      "build": "webpack"
+    },
+    "dependencies": {
+      "@pragmatic/dev-utils": "1.0.0",
+      "@pragmatic/ui-core": "1.0.0",
+      "antd": "4.9.2",
+      "react": "17.0.1",
+      "react-dom": "17.0.1"
+    }
+  }

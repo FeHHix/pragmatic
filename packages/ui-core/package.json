@@ -1,0 +1,18 @@
+{
+  "name": "@pragmatic/ui-core",
+  "version": "1.0.0",
+  "description": "Pragmatic UI Core project",
+  "main": "src/index.ts",
+  "types": "build/types/index.d.ts",
+  "author": "FeHHix",
+  "private": true,
+  "scripts": {
+    "build": "webpack"
+  },
+  "dependencies": {
+      "@pragmatic/dev-utils": "1.0.0",
+      "antd": "4.9.2",
+      "react": "17.0.1",
+      "react-dom": "17.0.1"
+  }
+}

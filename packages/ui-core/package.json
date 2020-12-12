@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "Pragmatic UI Core project",
   "main": "src/index.ts",
-  "types": "build/types/index.d.ts",
   "author": "FeHHix",
   "private": true,
   "scripts": {

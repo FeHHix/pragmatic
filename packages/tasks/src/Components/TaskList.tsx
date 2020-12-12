@@ -4,6 +4,9 @@ import 'antd/dist/antd.css';
 import { getTasks } from '../Service';
 import { TaskAssigneeLookupLabel } from './TaskAssigneeLookupLabel';
 
+/**
+ * @generated
+ */
 const columns = [
     {
         title: 'Name',
@@ -59,6 +62,9 @@ const columns = [
     },
 ];
 
+/**
+ * @generated
+ */
 export const TaskList: React.FC = () => {
     const [state, setState] = React.useState({isLoading: true, tasks: []});
     const {isLoading, tasks} = state;

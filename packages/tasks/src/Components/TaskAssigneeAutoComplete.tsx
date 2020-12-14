@@ -1,6 +1,5 @@
-import {API} from '@pragmatic/ui-core';
+import {API, AutoComplete} from '@pragmatic/ui-core';
 import React, {useState} from 'react';
-import { AutoComplete } from 'antd';
 
 /**
  * @generated
@@ -22,7 +21,7 @@ interface IOwnProps {
  * @generated
  */
 export const TaskAssigneeAutoComplete: React.FC<IOwnProps> = ({onChange, value}) => {
-    const [options, setOptions] = useState<{text: string, value: string}[]>([]);
+    const [options, setOptions] = useState<{text: string; value: string}[]>([]);
     const [searchText, setSearchText] = useState<string>('');
 
     React.useEffect(() => {
@@ -56,7 +55,6 @@ export const TaskAssigneeAutoComplete: React.FC<IOwnProps> = ({onChange, value})
             onSearch={handleSearch}
             // onSelect={handleSelect}
             placeholder="Input username"
-            style={{width: 200}}
         />
     );
 };

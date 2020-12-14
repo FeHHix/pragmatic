@@ -1,8 +1,9 @@
 import React from 'react';
-import {Table, Tag, Skeleton, Space} from 'antd';
+import {Table, Tag, Skeleton, Space, Button} from 'antd';
 import 'antd/dist/antd.css';
-import { getTasks } from '../Service';
-import { TaskAssigneeLookupLabel } from './TaskAssigneeLookupLabel';
+import {getTasks} from '../Service';
+import {TaskAssigneeLookupLabel} from './TaskAssigneeLookupLabel';
+import {TaskCreateTaskModal} from './TaskCreateTaskModal';
 
 /**
  * @generated
@@ -17,7 +18,11 @@ const columns = [
         title: 'Assignee',
         dataIndex: 'assignee',
         key: 'assignee',
-        render: (assignee: string) => <a><TaskAssigneeLookupLabel id={assignee} /></a>,
+        render: (assignee: string) => (
+            <a>
+                <TaskAssigneeLookupLabel id={assignee} />
+            </a>
+        ),
     },
     {
         title: 'Summary',
@@ -67,15 +72,39 @@ const columns = [
  */
 export const TaskList: React.FC = () => {
     const [state, setState] = React.useState({isLoading: true, tasks: []});
+    const [isAddTaskModalVisible, setIsAddTaskModalVisible] = React.useState(false);
     const {isLoading, tasks} = state;
 
     React.useEffect(() => {
-        getTasks().then((tasks) => {
-            setState({isLoading: false, tasks});
-        }).catch(() => {
-            setState({isLoading: false, tasks: []});
-        });
+        getTasks()
+            .then((tasks) => {
+                setState({isLoading: false, tasks});
+            })
+            .catch(() => {
+                setState({isLoading: false, tasks: []});
+            });
     }, []);
 
-    return isLoading ? <Skeleton /> : <Table columns={columns} dataSource={tasks} />;
+    const handleSubmit = () => {
+        console.log('Not implemented');
+    };
+
+    const handleCancel = () => {
+        console.log('Not implemented');
+    };
+
+    const handleClickAddTask = () => {
+        console.log('Add task');
+        setIsAddTaskModalVisible(true);
+    };
+
+    return (
+        <>
+            {isLoading ? <Skeleton /> : <Table columns={columns} dataSource={tasks} />}
+            <TaskCreateTaskModal onCancel={handleCancel} onSubmit={handleSubmit} showModal={isAddTaskModalVisible} />
+            <Button htmlType="button" onClick={handleClickAddTask} type="default">
+                Create task
+            </Button>
+        </>
+    );
 };

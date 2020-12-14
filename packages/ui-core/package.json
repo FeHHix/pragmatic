@@ -12,6 +12,7 @@
       "@pragmatic/dev-utils": "1.0.0",
       "antd": "4.9.2",
       "react": "17.0.1",
+      "rc-select": "11.5.3",
       "react-dom": "17.0.1"
   }
 }

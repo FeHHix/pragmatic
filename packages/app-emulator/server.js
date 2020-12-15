@@ -7,10 +7,9 @@ module.exports = (req, res, next) => {
     if (req.url.includes('error500')) {
         res.status(500).jsonp({
             error: 'Internal Server Error',
-            message: 'Ошибочно ошибиться ошибаясь ошибочной ошибкой',
-            path: '/ic/ufs/internet-acquiring/',
+            message: 'Что-то пошло не так',
             status: 500,
-            timestamp: '2020-05-08',
+            timestamp: new Date(),
         });
     } else {
         next();

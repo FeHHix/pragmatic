@@ -1,11 +1,20 @@
 import {Form} from 'antd';
 import React from 'react';
-import {FormProps} from 'antd/lib/form/Form';
+import { ColProps } from 'antd/lib/grid/col';
 
-interface IOwnProps extends FormProps {}
+/**
+ * @generated
+ */
+interface IOwnProps {
+    labelCol?: ColProps;
+    wrapperCol?: ColProps;
+}
 
-const FormComponent: React.FC<IOwnProps> = ({children, layout = {}}) => {
-    return <Form {...layout}>{children}</Form>;
+/**
+ * @generated
+ */
+const FormComponent: React.FC<IOwnProps> = ({children, ...props}) => {
+    return <Form {...props}>{children}</Form>;
 };
 
 export {FormComponent as Form};

@@ -18,7 +18,7 @@ export const TaskCreateTaskModal: React.FC<IOwnProps> = ({onCancel, onSubmit, sh
     };
 
     return (
-        <Modal title="Basic Modal" visible={showModal} onOk={handleOk} onCancel={handleCancel}>
+        <Modal title="Create Task" visible={showModal} onOk={handleOk} onCancel={handleCancel}>
             <TaskCreateForm />
         </Modal>
     );

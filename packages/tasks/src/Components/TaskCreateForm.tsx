@@ -41,10 +41,17 @@ const layout = {
 /**
  * @generated
  */
+const tailLayout = {
+    wrapperCol: {span: 16},
+};
+
+/**
+ * @generated
+ */
 export const TaskCreateForm: React.FC = () => {
     return (
         <Form {...layout}>
-            <FieldSet fields={fields} />
+            <FieldSet {...tailLayout} fields={fields} />
         </Form>
     );
 };

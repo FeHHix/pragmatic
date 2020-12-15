@@ -1,5 +1,6 @@
-import {API, AutoComplete} from '@pragmatic/ui-core';
+import {API} from '@pragmatic/ui-core';
 import React, {useState} from 'react';
+import { AutoComplete } from 'antd';
 
 /**
  * @generated
@@ -20,14 +21,14 @@ interface IOwnProps {
 /**
  * @generated
  */
-export const TaskAssigneeAutoComplete: React.FC<IOwnProps> = ({onChange, value}) => {
-    const [options, setOptions] = useState<{text: string; value: string}[]>([]);
+export const TaskAssigneeAutoComplete: React.FC<IOwnProps> = ({onChange}) => {
+    const [options, setOptions] = useState<{label: string; value: string}[]>([]);
     const [searchText, setSearchText] = useState<string>('');
 
     React.useEffect(() => {
         if (searchText !== '') {
-            API.post<ITaskAssignee[]>(`${API_URL}/users?name=${searchText}`)().then((users) => {
-                const options = users.map(({id, name}) => ({value: id, text: name}));
+            API.get<ITaskAssignee[]>(`${API_URL}/users?name=${searchText}`).then((users) => {
+                const options = users.map(({id, name}) => ({label: name, value: id}));
                 setOptions(options);
             });
         }
@@ -38,22 +39,26 @@ export const TaskAssigneeAutoComplete: React.FC<IOwnProps> = ({onChange, value})
         setSearchText(searchText);
     };
 
-    const handleChange = (data: string) => {
-        console.log('handleSelect', data);
+    const handleSelect = (value: string, option: any) => {
+        console.log('handleSelect_value', value);
+        console.log('handleSelect_option', option);
         if (onChange) {
-            onChange(data);
+            onChange(value);
         }
+    };
+
+    const handleChange = (value: string) => {
+        console.log('handleChange_value', value);
     };
 
     console.log('options', options);
 
     return (
         <AutoComplete
-            value={value || ''}
             options={options}
+            onSelect={handleSelect}
             onChange={handleChange}
             onSearch={handleSearch}
-            // onSelect={handleSelect}
             placeholder="Input username"
         />
     );

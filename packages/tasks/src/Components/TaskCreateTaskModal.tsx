@@ -1,25 +1,22 @@
 import React from 'react';
-import {Modal} from 'antd';
-import {TaskCreateForm} from './TaskCreateForm';
+import {Form, Modal} from 'antd';
+import {TaskEditForm} from './TaskEditForm';
 
 interface IOwnProps {
-    onCancel: () => void;
-    onSubmit: () => void;
+    onClose: () => void;
     showModal: boolean;
 }
 
-export const TaskCreateTaskModal: React.FC<IOwnProps> = ({onCancel, onSubmit, showModal}) => {
-    const handleOk = () => {
-        onSubmit();
-    };
+export const TaskCreateTaskModal: React.FC<IOwnProps> = ({onClose, showModal}) => {
+    const [form] = Form.useForm();
 
-    const handleCancel = () => {
-        onCancel();
+    const handleSubmit = () => {
+        console.log('form', form.getFieldsValue());
     };
 
     return (
-        <Modal title="Create Task" visible={showModal} onOk={handleOk} onCancel={handleCancel}>
-            <TaskCreateForm />
+        <Modal title="Create Task" visible={showModal} onOk={handleSubmit} onCancel={onClose}>
+            <TaskEditForm />
         </Modal>
     );
 };

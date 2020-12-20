@@ -1,14 +1,11 @@
 import {Form} from 'antd';
 import React from 'react';
-import { ColProps } from 'antd/lib/grid/col';
+import { FormProps } from 'antd/lib/form/Form';
 
 /**
  * @generated
  */
-interface IOwnProps {
-    labelCol?: ColProps;
-    wrapperCol?: ColProps;
-}
+interface IOwnProps extends FormProps {}
 
 /**
  * @generated

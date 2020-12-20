@@ -11,6 +11,7 @@
   "dependencies": {
       "@pragmatic/dev-utils": "1.0.0",
       "antd": "4.9.2",
+      "lodash": "4.17.20",
       "react": "16.14.0",
       "react-dom": "16.14.0"
   }

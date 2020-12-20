@@ -86,6 +86,10 @@ export const TaskEditForm: React.FC<IOwnProps> = ({match: {params: {id}}}) => {
                 setIsLoading(false);
             });
         }
+
+        return () => {
+            form.resetFields();
+        };
     }, [id]);
 
     const handleSubmit = (values: any) => {

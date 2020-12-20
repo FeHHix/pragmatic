@@ -1,4 +1,4 @@
 /**
  * @generated
  */
-export { Routes } from './Routes';
+export {Routes} from './Routes';

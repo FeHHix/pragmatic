@@ -1,6 +1,6 @@
 import {Table, Tag, Skeleton, Space} from 'antd';
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {Link, RouteComponentProps} from 'react-router-dom';
 import {getTasks} from '../Service';
 import {TaskAssigneeLookupLabel} from './TaskAssigneeLookupLabel';
 import 'antd/dist/antd.css';
@@ -85,7 +85,7 @@ function getInitialState(): IState {
 /**
  * @generated
  */
-export const TaskList: React.FC = () => {
+export const TaskList: React.FC<RouteComponentProps> = () => {
     const [state, setState] = React.useState<IState>(getInitialState());
     const {isLoading, tasks} = state;
 

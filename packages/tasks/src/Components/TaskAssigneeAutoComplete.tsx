@@ -1,6 +1,5 @@
-import {API} from '@pragmatic/ui-core';
+import {API, FormAutoComplete} from '@pragmatic/ui-core';
 import React, {useState} from 'react';
-import { AutoComplete } from 'antd';
 
 /**
  * @generated
@@ -54,7 +53,7 @@ export const TaskAssigneeAutoComplete: React.FC<IOwnProps> = ({onChange}) => {
     console.log('options', options);
 
     return (
-        <AutoComplete
+        <FormAutoComplete
             options={options}
             onSelect={handleSelect}
             onChange={handleChange}

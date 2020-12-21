@@ -7,21 +7,18 @@ export interface IButtonConfig {
     htmlType: ButtonHTMLType;
     key: string;
     label: string;
-    onClick: () => void;
+    onClick?: () => void;
     type: ButtonType;
 }
 
 interface IOwnProps {
     buttons: IButtonConfig[];
-    layout: {
-        labelCol?: ColProps;
-        wrapperCol?: ColProps;
-    };
+    wrapperCol?: ColProps;
 }
 
-export const ButtonSet: React.FC<IOwnProps> = ({buttons, layout}) => {
+export const ButtonSet: React.FC<IOwnProps> = ({buttons, ...formItemProps}) => {
     return (
-        <Form.Item {...layout}>
+        <Form.Item {...formItemProps}>
             {buttons.map(({htmlType, key, label, onClick, type}, index) => (
                 <Button htmlType={htmlType} key={key || index} onClick={onClick} type={type}>
                     {label}

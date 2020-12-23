@@ -1,35 +1,59 @@
 import {Select, Spin} from 'antd';
-// import debounce from 'lodash/debounce';
+import debounce from 'lodash/debounce';
 import React from 'react';
-import {API} from '../Service';
 
-// const {Option} = Select;
-
-interface IOwnProps {
-    lookupUrl: string;
-    onChange?: (value: string) => void;
-    placeholder?: string;
-    renderOption: (data: any) => JSX.Element;
-    value: any;
+interface IValue {
+    key: string;
+    label: string;
+    value: string;
 }
 
-export class AutoComplete extends React.Component<IOwnProps> {
-    // constructor(props) {
-    //     super(props);
-    //     this.lastFetchId = 0;
-    //     // this.fetchUser = debounce(this.fetchUser, 800);
-    // }
+export interface IAutoCompleteProps {
+    disabled?: boolean;
+    onChange?: (value: string) => void;
+    onResolve?: (value: string) => Promise<IValue>;
+    onSearch: (value: string) => Promise<unknown>;
+    placeholder?: string;
+    renderOption: (data: any) => JSX.Element;
+    value: string;
+}
+
+interface IState {
+    data: unknown[];
+    fetching: boolean;
+    value?: IValue;
+}
+
+export class AutoComplete extends React.Component<IAutoCompleteProps, IState> {
+    constructor(props: IAutoCompleteProps) {
+        super(props);
+        this.lastFetchId = 0;
+        this.handleSearch = debounce(this.handleSearch, 800);
+    }
 
     lastFetchId: number = 0;
 
-    state = {
+    state: IState = {
         data: [],
-        value: [],
         fetching: false,
+        value: {
+            key: this.props.value,
+            label: this.props.value,
+            value: this.props.value,
+        }
     };
 
-    fetchData = (value: string) => {
-        const {lookupUrl} = this.props;
+    componentDidMount() {
+        const {onResolve, value} = this.props;
+
+        onResolve &&
+            onResolve(value).then((value) => {
+                this.setState({value});
+            });
+    }
+
+    handleSearch = (value: string) => {
+        const {onSearch} = this.props;
 
         this.lastFetchId += 1;
 
@@ -37,43 +61,46 @@ export class AutoComplete extends React.Component<IOwnProps> {
 
         this.setState({data: [], fetching: true});
 
-        API.get(`${lookupUrl}=${value}`).then((data: any) => {
-            if (fetchId !== this.lastFetchId) {
-                return;
-            }
-
-            // const data = body.results.map((user) => ({
-            //     text: `${user.name.first} ${user.name.last}`,
-            //     value: user.login.username,
-            // }));
-
-            this.setState({data, fetching: false});
-        });
+        if (value) {
+            onSearch(value).then((data: any) => {
+                if (fetchId !== this.lastFetchId) {
+                    return;
+                }
+    
+                this.setState({data: !Array.isArray(data) ? [] : data, fetching: false});
+            });
+        }
     };
 
-    handleChange = (value: any) => {
+    handleChange = (value: IValue) => {
         const {onChange} = this.props;
 
-        this.setState({
-            data: [],
-            fetching: false,
-        }, () => onChange && onChange(value));
+        this.setState(
+            {
+                data: [],
+                fetching: false,
+                value,
+            },
+            () => onChange && onChange(value.value)
+        );
     };
 
     render() {
-        const {placeholder, renderOption, value} = this.props;
-        const {fetching, data} = this.state;
+        const {disabled, placeholder, renderOption} = this.props;
+        const {fetching, data, value} = this.state;
 
         return (
             <Select
-                labelInValue
-                value={value}
-                placeholder={placeholder}
-                notFoundContent={fetching ? <Spin size="small" /> : null}
+                disabled={disabled}
                 filterOption={false}
-                onSearch={this.fetchData}
+                labelInValue
+                notFoundContent={fetching ? <Spin size="small" /> : null}
                 onChange={this.handleChange}
+                onSearch={this.handleSearch}
+                placeholder={placeholder}
+                showSearch
                 style={{width: '100%'}}
+                value={value}
             >
                 {data.map((d) => renderOption(d))}
             </Select>

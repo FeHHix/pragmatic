@@ -1,12 +1,11 @@
-import {AutoComplete} from 'antd';
-import {AutoCompleteProps} from 'antd/lib/auto-complete';
 import React from 'react';
+import {AutoComplete, IAutoCompleteProps} from '../../../Components/AutoComplete';
 import {withReadonly} from '../HOC/withReadonly';
 
 /**
  * @generated
  */
-interface IOwnProps extends AutoCompleteProps {}
+interface IOwnProps extends IAutoCompleteProps {}
 
 /**
  * @generated

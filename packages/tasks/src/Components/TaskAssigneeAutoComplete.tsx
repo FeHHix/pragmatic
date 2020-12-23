@@ -1,5 +1,8 @@
 import {API, FormAutoComplete} from '@pragmatic/ui-core';
-import React, {useState} from 'react';
+import {Select} from 'antd';
+import React from 'react';
+
+const {Option} = Select;
 
 /**
  * @generated
@@ -17,48 +20,33 @@ interface IOwnProps {
     value?: string;
 }
 
+const renderOption = (user: ITaskAssignee) => (
+    <Option key={user.id} value={user.id}>
+        {user.name}
+    </Option>
+);
+
 /**
  * @generated
  */
-export const TaskAssigneeAutoComplete: React.FC<IOwnProps> = ({onChange}) => {
-    const [options, setOptions] = useState<{label: string; value: string}[]>([]);
-    const [searchText, setSearchText] = useState<string>('');
-
-    React.useEffect(() => {
-        if (searchText !== '') {
-            API.get<ITaskAssignee[]>(`${API_URL}/users?name=${searchText}`).then((users) => {
-                const options = users.map(({id, name}) => ({label: name, value: id}));
-                setOptions(options);
-            });
-        }
-    }, [searchText]);
-
+export const TaskAssigneeAutoComplete: React.FC<IOwnProps> = ({onChange, value = ''}) => {
     const handleSearch = (searchText: string) => {
-        console.log('handleSearch', searchText);
-        setSearchText(searchText);
+        return API.get<ITaskAssignee[]>(`${API_URL}/users?name=${searchText}`);
     };
 
-    const handleSelect = (value: string, option: any) => {
-        console.log('handleSelect_value', value);
-        console.log('handleSelect_option', option);
-        if (onChange) {
-            onChange(value);
-        }
+    const handleResolve = async (id: string) => {
+        const user = await API.get<ITaskAssignee>(`${API_URL}/users/${id}`);
+        return {key: user.id, label: user.name, value: user.id};
     };
-
-    const handleChange = (value: string) => {
-        console.log('handleChange_value', value);
-    };
-
-    console.log('options', options);
 
     return (
         <FormAutoComplete
-            options={options}
-            onSelect={handleSelect}
-            onChange={handleChange}
             onSearch={handleSearch}
+            onChange={onChange}
+            onResolve={handleResolve}
             placeholder="Input username"
+            renderOption={renderOption}
+            value={value}
         />
     );
 };

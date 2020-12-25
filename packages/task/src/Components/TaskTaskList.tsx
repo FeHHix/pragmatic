@@ -2,9 +2,10 @@ import {Table, Tag, Skeleton, Space} from 'antd';
 import React from 'react';
 import {Link, RouteComponentProps} from 'react-router-dom';
 import {getTasks} from '../Service';
-import {TaskAssigneeLookupLabel} from './TaskAssigneeLookupLabel';
+import {TaskUserLookupLabel} from './TaskUserLookupLabel';
 import 'antd/dist/antd.css';
 import {ITask} from '../Models';
+import {TaskTaskStatusLookupLabel} from './TaskTaskStatusLookupLabel';
 
 /**
  * @generated
@@ -21,7 +22,7 @@ const columns = [
         key: 'assignee',
         render: (assignee: string) => (
             <a>
-                <TaskAssigneeLookupLabel id={assignee} />
+                <TaskUserLookupLabel id={assignee} />
             </a>
         ),
     },
@@ -54,6 +55,11 @@ const columns = [
         title: 'Status',
         key: 'status',
         dataIndex: 'status',
+        render: (status: string) => (
+            <a>
+                <TaskTaskStatusLookupLabel id={status} />
+            </a>
+        ),
     },
     {
         title: 'Action',
@@ -86,7 +92,7 @@ function getInitialState(): IState {
 /**
  * @generated
  */
-export const TaskList: React.FC<RouteComponentProps> = () => {
+export const TaskTaskList: React.FC<RouteComponentProps> = () => {
     const [state, setState] = React.useState<IState>(getInitialState());
     const {isLoading, tasks} = state;
 

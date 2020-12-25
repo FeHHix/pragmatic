@@ -5,7 +5,7 @@ import React from 'react';
 import {RouteComponentProps} from 'react-router-dom';
 import {ITask} from '../Models';
 import {getTask} from '../Service';
-import {TaskAssigneeAutoComplete} from './TaskAssigneeAutoComplete';
+import {TaskUserAutoComplete} from './TaskUserAutoComplete';
 
 /**
  * @generated
@@ -41,7 +41,7 @@ export const fields: IFieldConfig[] = [
     {
         label: 'Assignee',
         name: 'assignee',
-        render: () => <TaskAssigneeAutoComplete />,
+        render: () => <TaskUserAutoComplete />,
         rules: [{message: 'Please assignee task for user!', required: true}],
     },
     {

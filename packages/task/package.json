@@ -1,5 +1,5 @@
 {
-  "name": "@pragmatic/tasks",
+  "name": "@pragmatic/task",
   "version": "1.0.0",
   "description": "Pragmatic Tasks project",
   "main": "src/index.ts",

@@ -7,3 +7,11 @@ export interface ITask {
     id: string;
     summary: string
 }
+
+/**
+ * @generated
+ */
+export interface ITaskStatus {
+    id: string;
+    name: string;
+}

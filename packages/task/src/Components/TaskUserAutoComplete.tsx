@@ -29,7 +29,7 @@ const renderOption = (user: ITaskAssignee) => (
 /**
  * @generated
  */
-export const TaskAssigneeAutoComplete: React.FC<IOwnProps> = ({onChange, value = ''}) => {
+export const TaskUserAutoComplete: React.FC<IOwnProps> = ({onChange, value = ''}) => {
     const handleSearch = (searchText: string) => {
         return API.get<ITaskAssignee[]>(`${API_URL}/users?name=${searchText}`);
     };

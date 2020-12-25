@@ -6,7 +6,7 @@
             "id": "1",
             "key": "1",
             "name": "Task 1",
-            "status": "TO_DO",
+            "status": "1",
             "summary": "Task Summary 1",
             "tags": ["nice", "developer"]
         },
@@ -16,7 +16,7 @@
             "id": "2",
             "key": "2",
             "name": "Task 2",
-            "status": "IN_PROGRESS",
+            "status": "2",
             "summary": "Task Summary 2",
             "tags": ["nice", "developer"]
         },
@@ -26,9 +26,23 @@
             "id": "3",
             "key": "3",
             "name": "Task 3",
-            "status": "ON_HOLD",
+            "status": "3",
             "summary": "Task Summary 3",
             "tags": ["cool", "manager"]
+        }
+    ],
+    "taskStatuses": [
+        {
+            "id": "1",
+            "name": "TO DO"
+        },
+        {
+            "id": "2",
+            "name": "IN PROGRESS"
+        },
+        {
+            "id": "3",
+            "name": "ON HOLD"
         }
     ],
     "users": [

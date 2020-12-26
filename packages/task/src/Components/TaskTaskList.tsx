@@ -67,7 +67,8 @@ const columns = [
         key: 'actions',
         render: (id: string) => (
             <Space size="middle">
-                <Link to={`/tasks/edit/${id}`}>Update</Link>
+                <Link to={`/tasks/${id}/edit`}>Update</Link>
+                <Link to={`/tasks/${id}/history`}>History</Link>
                 <Link to={`/tasks/${id}`}>View</Link>
             </Space>
         ),

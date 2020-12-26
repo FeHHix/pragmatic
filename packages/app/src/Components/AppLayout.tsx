@@ -4,15 +4,10 @@ import {Layout, Menu} from 'antd';
 import {CarryOutOutlined, UserOutlined} from '@ant-design/icons';
 import {Footer, Header} from 'antd/lib/layout/layout';
 import Sider from 'antd/lib/layout/Sider';
-import SubMenu from 'antd/lib/menu/SubMenu';
 import React from 'react';
 import {Link, RouteComponentProps, withRouter} from 'react-router-dom';
 
-const AppLayout: React.FC<RouteComponentProps> = ({history}) => {
-    const createSubMenuClickHandler = (to: string) => () => {
-        history.push(to);
-    };
-
+const AppLayout: React.FC<RouteComponentProps> = () => {
     return (
         <Layout>
             <Header className="header">
@@ -25,11 +20,9 @@ const AppLayout: React.FC<RouteComponentProps> = ({history}) => {
             <Layout className="ant-layout-has-sider">
                 <Sider width={200} className="site-layout-background">
                     <Menu mode="inline" defaultSelectedKeys={['1']} style={{height: '100%', borderRight: 0}}>
-                        <SubMenu key="/tasks" icon={<CarryOutOutlined />} onTitleClick={createSubMenuClickHandler('/tasks')} title="Tasks">
-                            <Menu.Item key="/tasks/taskStatuses">
-                                <Link to="/tasks/taskStatuses">Statuses</Link>
-                            </Menu.Item>
-                        </SubMenu>
+                        <Menu.Item icon={<CarryOutOutlined />} key="/tasks">
+                            <Link to="/tasks">Tasks</Link>
+                        </Menu.Item>
                         <Menu.Item icon={<UserOutlined />} key="/users">
                             <Link to="/users">Users</Link>
                         </Menu.Item>

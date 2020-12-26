@@ -1,5 +1,6 @@
 import React from 'react';
 import {LookupLabel} from '@pragmatic/ui-core';
+import { Tag } from 'antd';
 
 /**
  * @generated
@@ -19,7 +20,7 @@ interface ITaskStatusLookupResponse {
 /**
  * @generated
  */
-const renderLabel = (rs: ITaskStatusLookupResponse) => <span>{rs.name}</span>;
+const renderLabel = (rs: ITaskStatusLookupResponse) => <Tag color="blue">{rs.name}</Tag>;
 
 /**
  * @generated

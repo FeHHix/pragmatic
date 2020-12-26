@@ -9,10 +9,19 @@ import {TaskTaskStatusList} from './Components/TaskTaskStatusList';
  */
 export const Routes: IRoute[] = [
     {
-        component: TaskTaskList,
-        exact: true,
-        label: 'Tasks',
-        path: '/tasks',
+        component: TaskEditForm,
+        label: 'Edit Task',
+        path: '/tasks/:id/edit',
+    },
+    {
+        component: TaskTaskStatusList,
+        label: 'Task Status History',
+        path: '/tasks/:id/history',
+    },
+    {
+        component: TaskDetailsForm,
+        label: 'Task Details',
+        path: '/tasks/:id',
     },
     {
         component: TaskEditForm,
@@ -20,18 +29,8 @@ export const Routes: IRoute[] = [
         path: '/tasks/create',
     },
     {
-        component: TaskEditForm,
-        label: 'Edit Task',
-        path: '/tasks/edit/:id',
-    },
-    {
-        component: TaskTaskStatusList,
-        label: 'Task Statuses',
-        path: '/tasks/taskStatuses',
-    },
-    {
-        component: TaskDetailsForm,
-        label: 'Task Details',
-        path: '/tasks/:id',
+        component: TaskTaskList,
+        label: 'Tasks',
+        path: '/tasks',
     },
 ];

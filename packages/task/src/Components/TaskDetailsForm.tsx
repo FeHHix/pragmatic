@@ -1,11 +1,12 @@
-import {Form, FieldSet, ButtonSet, FormInput, FormTextArea} from '@pragmatic/ui-core';
+import {Form, FieldSet, FormInput, FormTextArea} from '@pragmatic/ui-core';
 import type {IButtonConfig, IFieldConfig} from '@pragmatic/ui-core';
-import {Form as AntdForm, Skeleton} from 'antd';
+import {Button, Form as AntdForm, PageHeader, Skeleton, Tag} from 'antd';
 import React from 'react';
 import {RouteComponentProps} from 'react-router-dom';
 import {ITask} from '../Models';
 import {getTask} from '../Service';
 import {TaskUserAutoComplete} from './TaskUserAutoComplete';
+import {TaskTaskStatusLookupLabel} from './TaskTaskStatusLookupLabel';
 
 /**
  * @generated
@@ -64,17 +65,7 @@ export const fields: IFieldConfig[] = [
 const getButtons = (props: IOwnProps): IButtonConfig[] => [
     {
         action: () => {
-            props.history.push('/tasks/create');
-        },
-        enabled: () => true,
-        htmlType: 'button',
-        key: 'create',
-        label: 'Create',
-        type: 'primary',
-    },
-    {
-        action: () => {
-            props.history.push(`/tasks/edit/${props.match.params.id}`);
+            props.history.push(`/tasks/${props.match.params.id}/edit`);
         },
         enabled: () => true,
         htmlType: 'button',
@@ -90,7 +81,17 @@ const getButtons = (props: IOwnProps): IButtonConfig[] => [
         htmlType: 'button',
         key: 'delete',
         label: 'Delete',
-        type: 'primary',
+        type: 'default',
+    },
+    {
+        action: () => {
+            props.history.push(`/tasks/${props.match.params.id}/history`);
+        },
+        enabled: () => true,
+        htmlType: 'button',
+        key: 'history',
+        label: 'History',
+        type: 'default',
     },
 ];
 
@@ -116,9 +117,22 @@ export const TaskDetailsForm: React.FC<IOwnProps> = (props) => {
     return isLoading ? (
         <Skeleton />
     ) : (
-        <Form {...layout} form={form} layout="horizontal" readonly>
-            <FieldSet fields={fields} />
-            <ButtonSet {...buttonItemLayout} buttons={getButtons(props)} />
-        </Form>
+        <PageHeader
+            extra={getButtons(props)
+                .filter((btn) => btn.enabled())
+                .map(({action, htmlType, key, label, type}) => (
+                    <Button htmlType={htmlType} key={key} onClick={action} type={type}>
+                        {label}
+                    </Button>
+                ))}
+            ghost={false}
+            onBack={() => window.history.back()}
+            tags={<TaskTaskStatusLookupLabel id={id} />}
+            title={`Task ${id}`}
+        >
+            <Form {...layout} form={form} layout="horizontal" readonly>
+                <FieldSet fields={fields} />
+            </Form>
+        </PageHeader>
     );
 };

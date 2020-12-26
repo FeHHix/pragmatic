@@ -19,11 +19,11 @@ interface IAssigneeLookupResponse {
 /**
  * @generated
  */
-const handleResolve = (rs: IAssigneeLookupResponse) => rs.name;
+const renderLabel = (rs: IAssigneeLookupResponse) => <span>{rs.name}</span>;
 
 /**
  * @generated
  */
-export const TaskAssigneeLookupLabel: React.FC<IOwnProps> = ({id}) => (
-    <LookupLabel id={id} url={`${API_URL}/users`} onResolve={handleResolve} />
+export const TaskUserLookupLabel: React.FC<IOwnProps> = ({id}) => (
+    <LookupLabel id={id} url={`${API_URL}/users`} renderLabel={renderLabel} />
 );

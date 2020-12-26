@@ -12,17 +12,20 @@ module.exports = (env, argv) => {
             entry: {
                 index: path.resolve(__dirname, 'src/index.tsx'),
             },
-    
+
             output: {
                 filename: '[name].bundle.js',
                 path: path.resolve(__dirname, 'dist'),
+                publicPath: '/',
             },
-    
+
             devServer: {
+                compress: false,
                 contentBase: './dist',
+                historyApiFallback: true,
                 proxy: {
-                  '/pragmatic/api': 'http://localhost:5000'
-                }
+                    '/pragmatic/api': 'http://localhost:5000',
+                },
             },
 
             plugins: [
@@ -32,7 +35,7 @@ module.exports = (env, argv) => {
                     template: 'index.html',
                 }),
                 new webpack.DefinePlugin({
-                  API_URL: JSON.stringify('/pragmatic/api/v1/rest'),
+                    API_URL: JSON.stringify('/pragmatic/api/v1/rest'),
                 }),
             ],
         },

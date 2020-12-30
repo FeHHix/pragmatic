@@ -1,20 +1,30 @@
-import {Table, Tag, Skeleton, Space} from 'antd';
+import {IColumn, Table} from '@pragmatic/ui-core';
+import {Tag, Skeleton, Space, Input} from 'antd';
 import React from 'react';
 import {Link, RouteComponentProps} from 'react-router-dom';
 import {getTasks} from '../Service';
 import {TaskUserLookupLabel} from './TaskUserLookupLabel';
 import 'antd/dist/antd.css';
-import {ITask} from '../Models';
+import {ITask, ITaskFilter} from '../Models';
 import {TaskTaskStatusLookupLabel} from './TaskTaskStatusLookupLabel';
+import {TaskUserAutoComplete} from './TaskUserAutoComplete';
 
 /**
  * @generated
  */
-const columns = [
+const columns: IColumn[] = [
     {
         title: 'Name',
         dataIndex: 'name',
         key: 'name',
+        renderFilter: (props) => (
+            <Input
+                {...props}
+                onChange={(e) => {
+                    props.onChange(e.target.value);
+                }}
+            />
+        ),
     },
     {
         title: 'Assignee',
@@ -25,11 +35,20 @@ const columns = [
                 <TaskUserLookupLabel id={assignee} />
             </a>
         ),
+        renderFilter: (props) => <TaskUserAutoComplete {...props} />,
     },
     {
         title: 'Summary',
         dataIndex: 'summary',
         key: 'summary',
+        renderFilter: (props) => (
+            <Input
+                {...props}
+                onChange={(e) => {
+                    props.onChange(e.target.value);
+                }}
+            />
+        ),
     },
     {
         title: 'Tags',
@@ -67,7 +86,6 @@ const columns = [
         key: 'actions',
         render: (id: string) => (
             <Space size="middle">
-                <Link to={`/tasks/${id}/edit`}>Update</Link>
                 <Link to={`/tasks/${id}/info`}>View</Link>
             </Space>
         ),
@@ -94,17 +112,32 @@ function getInitialState(): IState {
  */
 export const TaskTaskList: React.FC<RouteComponentProps> = () => {
     const [state, setState] = React.useState<IState>(getInitialState());
+    const [filter, setFilter] = React.useState<ITaskFilter>({});
     const {isLoading, tasks} = state;
 
     React.useEffect(() => {
-        getTasks()
+        getTasks(filter)
             .then((tasks) => {
                 setState({isLoading: false, tasks});
             })
             .catch(() => {
                 setState({isLoading: false, tasks: []});
             });
-    }, []);
+    }, [filter]);
 
-    return isLoading ? <Skeleton /> : <Table columns={columns} dataSource={tasks} />;
+    const handleFilter = (filter: ITaskFilter) => {
+        setFilter((prevFilter) => ({...prevFilter, ...filter}));
+    };
+
+    const handleResetFilter = (dataIndex: string) => {
+        setFilter((prevFilter) => ({...prevFilter, [dataIndex]: null}));
+    };
+
+    console.log('filter', filter);
+
+    return isLoading ? (
+        <Skeleton />
+    ) : (
+        <Table columns={columns} dataSource={tasks} onFilter={handleFilter} onResetFilter={handleResetFilter} />
+    );
 };

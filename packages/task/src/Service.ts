@@ -1,10 +1,10 @@
 import {API as Api} from '@pragmatic/ui-core';
-import {ITask, ITaskStatus} from './Models';
+import {ITask, ITaskFilter, ITaskStatus} from './Models';
 
 /**
  * @generated
  */
-export const getTasks = (): Promise<ITask[]> => Api.get(`${API_URL}/tasks`);
+export const getTasks = (filter?: ITaskFilter): Promise<ITask[]> => Api.get(`${API_URL}/tasks`);
 
 /**
  * @generated

@@ -20,14 +20,13 @@ export const Routes: IRoute[] = [
         path: '/tasks/create',
     },
     {
+        component: TaskEditForm,
+        label: 'Edit Task',
+        path: '/tasks/:id/edit',
+    },
+    {
         component: TaskCard,
         label: 'Task Details',
         path: '/tasks/:id',
-    },
-    {
-        component: TaskEditForm,
-        exact: true,
-        label: 'Edit Task',
-        path: '/tasks/:id/edit',
     },
 ];

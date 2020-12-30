@@ -1,4 +1,19 @@
 /**
+* @generated
+*/
+export interface ITaskFilter {
+    id?: string,
+    assignee?: string,
+    summary?: string,
+    content?: string,
+    tags?: string[],
+    status?: string,
+    statusHistoryDateFrom?: string,
+    statusHistoryDateTo?: string,
+    statusHistoryStatus?: string,
+}
+
+/**
  * @generated
  */
 export interface ITask {

@@ -2,12 +2,18 @@ import {Select, Spin} from 'antd';
 import debounce from 'lodash/debounce';
 import React from 'react';
 
+/**
+ * @generated
+ */
 interface IValue {
     key: string;
     label: string;
     value: string;
 }
 
+/**
+ * @generated
+ */
 export interface IAutoCompleteProps {
     disabled?: boolean;
     onChange?: (value: string) => void;
@@ -18,12 +24,33 @@ export interface IAutoCompleteProps {
     value: string;
 }
 
+/**
+ * @generated
+ */
 interface IState {
     data: unknown[];
     fetching: boolean;
     value?: IValue;
 }
 
+/**
+ * @generated
+ */
+function getInitialState(value: string): IState {
+    return {
+        data: [],
+        fetching: false,
+        value: {
+            key: value,
+            label: value,
+            value: value,
+        },
+    };
+}
+
+/**
+ * @generated
+ */
 export class AutoComplete extends React.Component<IAutoCompleteProps, IState> {
     constructor(props: IAutoCompleteProps) {
         super(props);
@@ -33,15 +60,7 @@ export class AutoComplete extends React.Component<IAutoCompleteProps, IState> {
 
     lastFetchId: number = 0;
 
-    state: IState = {
-        data: [],
-        fetching: false,
-        value: {
-            key: this.props.value,
-            label: this.props.value,
-            value: this.props.value,
-        }
-    };
+    state: IState = getInitialState(this.props.value);
 
     componentDidMount() {
         const {onResolve, value} = this.props;
@@ -50,6 +69,14 @@ export class AutoComplete extends React.Component<IAutoCompleteProps, IState> {
             onResolve(value).then((value) => {
                 this.setState({value});
             });
+    }
+
+    componentDidUpdate(prevProps: IAutoCompleteProps) {
+        const {value} = this.props;
+
+        if (value !== prevProps.value && value === '') {
+            this.setState(getInitialState(value));
+        }
     }
 
     handleSearch = (value: string) => {
@@ -66,7 +93,7 @@ export class AutoComplete extends React.Component<IAutoCompleteProps, IState> {
                 if (fetchId !== this.lastFetchId) {
                     return;
                 }
-    
+
                 this.setState({data: !Array.isArray(data) ? [] : data, fetching: false});
             });
         }

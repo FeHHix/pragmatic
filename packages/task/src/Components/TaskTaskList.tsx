@@ -68,8 +68,7 @@ const columns = [
         render: (id: string) => (
             <Space size="middle">
                 <Link to={`/tasks/${id}/edit`}>Update</Link>
-                <Link to={`/tasks/${id}/history`}>History</Link>
-                <Link to={`/tasks/${id}`}>View</Link>
+                <Link to={`/tasks/${id}/info`}>View</Link>
             </Space>
         ),
     },

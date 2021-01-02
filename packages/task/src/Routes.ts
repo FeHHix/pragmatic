@@ -11,22 +11,22 @@ export const Routes: IRoute[] = [
         component: TaskTaskList,
         exact: true,
         label: 'Tasks',
-        path: '/tasks',
+        path: '/task/tasks',
     },
     {
         component: TaskEditForm,
         exact: true,
         label: 'Create Task',
-        path: '/tasks/create',
+        path: '/task/task/create',
     },
     {
         component: TaskEditForm,
         label: 'Edit Task',
-        path: '/tasks/:id/edit',
+        path: '/task/task/:id/edit',
     },
     {
         component: TaskCard,
         label: 'Task Details',
-        path: '/tasks/:id',
+        path: '/task/task/:id',
     },
 ];

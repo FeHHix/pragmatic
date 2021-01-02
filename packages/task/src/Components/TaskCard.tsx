@@ -51,13 +51,13 @@ export const getRoutes = (id: string): ITabRoute[] => [
         component: TaskDetailsForm,
         key: `/tasks/${id}/info`,
         label: 'Info',
-        path: '/tasks/:id/info',
+        path: '/task/task/:id/info',
     },
     {
         component: TaskTaskStatusList,
         key: `/tasks/${id}/history`,
         label: 'History',
-        path: '/tasks/:id/history',
+        path: '/task/task/:id/history',
     },
 ];
 

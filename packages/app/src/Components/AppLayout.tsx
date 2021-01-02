@@ -13,17 +13,17 @@ const AppLayout: React.FC<RouteComponentProps> = () => {
             <Header className="header">
                 <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']}>
                     <Menu.Item key="1">
-                        <Link to="/tasks/create">Create Task</Link>
+                        <Link to="/task/task/create">Create Task</Link>
                     </Menu.Item>
                 </Menu>
             </Header>
             <Layout className="ant-layout-has-sider">
                 <Sider width={200} className="site-layout-background">
                     <Menu mode="inline" defaultSelectedKeys={['1']} style={{height: '100%', borderRight: 0}}>
-                        <Menu.Item icon={<CarryOutOutlined />} key="/tasks">
+                        <Menu.Item icon={<CarryOutOutlined />} key="/task/tasks">
                             <Link to="/tasks">Tasks</Link>
                         </Menu.Item>
-                        <Menu.Item icon={<UserOutlined />} key="/users">
+                        <Menu.Item icon={<UserOutlined />} key="/user/users">
                             <Link to="/users">Users</Link>
                         </Menu.Item>
                     </Menu>

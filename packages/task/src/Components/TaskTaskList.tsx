@@ -1,5 +1,5 @@
-import {FilterInput, IColumn, Table} from '@pragmatic/ui-core';
-import {Tag, Skeleton, Space} from 'antd';
+import {FilterInput, IColumn, Table, Tags} from '@pragmatic/ui-core';
+import {Skeleton, Space} from 'antd';
 import React from 'react';
 import {Link, RouteComponentProps} from 'react-router-dom';
 import {getTasks} from '../Service';
@@ -39,21 +39,7 @@ const columns: IColumn[] = [
     {
         dataIndex: 'tags',
         key: 'tags',
-        render: (tags: any) => (
-            <>
-                {tags.map((tag: any) => {
-                    let color = tag.length > 5 ? 'geekblue' : 'green';
-                    if (tag === 'loser') {
-                        color = 'volcano';
-                    }
-                    return (
-                        <Tag color={color} key={tag}>
-                            {tag.toUpperCase()}
-                        </Tag>
-                    );
-                })}
-            </>
-        ),
+        render: (tags: string[]) => <Tags tags={tags} />,
         title: 'Tags',
     },
     {

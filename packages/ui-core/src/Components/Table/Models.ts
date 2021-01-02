@@ -16,6 +16,6 @@ export interface IColumn {
     componentFilter?: React.ComponentType<IFilterProps>;
     dataIndex: string;
     key: string;
-    render?: (value: string) => JSX.Element;
+    render?: (value: any) => JSX.Element;
     title: string;
 }

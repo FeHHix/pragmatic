@@ -1,5 +1,5 @@
-import {IColumn, Table} from '@pragmatic/ui-core';
-import {Tag, Skeleton, Space, Input} from 'antd';
+import {FilterInput, IColumn, Table} from '@pragmatic/ui-core';
+import {Tag, Skeleton, Space} from 'antd';
 import React from 'react';
 import {Link, RouteComponentProps} from 'react-router-dom';
 import {getTasks} from '../Service';
@@ -14,20 +14,13 @@ import {TaskUserAutoComplete} from './TaskUserAutoComplete';
  */
 const columns: IColumn[] = [
     {
-        title: 'Name',
+        componentFilter: FilterInput,
         dataIndex: 'name',
         key: 'name',
-        renderFilter: (props) => (
-            <Input
-                {...props}
-                onChange={(e) => {
-                    props.onChange(e.target.value);
-                }}
-            />
-        ),
+        title: 'Name',
     },
     {
-        title: 'Assignee',
+        componentFilter: TaskUserAutoComplete,
         dataIndex: 'assignee',
         key: 'assignee',
         render: (assignee: string) => (
@@ -35,25 +28,17 @@ const columns: IColumn[] = [
                 <TaskUserLookupLabel id={assignee} />
             </a>
         ),
-        renderFilter: (props) => <TaskUserAutoComplete {...props} />,
+        title: 'Assignee',
     },
     {
-        title: 'Summary',
+        componentFilter: FilterInput,
         dataIndex: 'summary',
         key: 'summary',
-        renderFilter: (props) => (
-            <Input
-                {...props}
-                onChange={(e) => {
-                    props.onChange(e.target.value);
-                }}
-            />
-        ),
+        title: 'Summary',
     },
     {
-        title: 'Tags',
-        key: 'tags',
         dataIndex: 'tags',
+        key: 'tags',
         render: (tags: any) => (
             <>
                 {tags.map((tag: any) => {
@@ -69,6 +54,7 @@ const columns: IColumn[] = [
                 })}
             </>
         ),
+        title: 'Tags',
     },
     {
         title: 'Status',

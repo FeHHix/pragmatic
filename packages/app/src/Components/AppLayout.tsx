@@ -21,10 +21,10 @@ const AppLayout: React.FC<RouteComponentProps> = () => {
                 <Sider width={200} className="site-layout-background">
                     <Menu mode="inline" defaultSelectedKeys={['1']} style={{height: '100%', borderRight: 0}}>
                         <Menu.Item icon={<CarryOutOutlined />} key="/task/tasks">
-                            <Link to="/tasks">Tasks</Link>
+                            <Link to="/task/tasks">Tasks</Link>
                         </Menu.Item>
                         <Menu.Item icon={<UserOutlined />} key="/user/users">
-                            <Link to="/users">Users</Link>
+                            <Link to="/user/users">Users</Link>
                         </Menu.Item>
                     </Menu>
                 </Sider>

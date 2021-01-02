@@ -1,5 +1,5 @@
-import {Form, FieldSet, FormInput, FormTextArea} from '@pragmatic/ui-core';
-import type {IFieldConfig} from '@pragmatic/ui-core';
+import {Form, FieldSet, ButtonSet, FormInput, FormTextArea} from '@pragmatic/ui-core';
+import type {IButtonConfig, IFieldConfig} from '@pragmatic/ui-core';
 import {Form as AntdForm, Skeleton} from 'antd';
 import React from 'react';
 import {RouteComponentProps} from 'react-router-dom';
@@ -13,6 +13,13 @@ import {TaskUserAutoComplete} from './TaskUserAutoComplete';
 const layout = {
     labelCol: {span: 4},
     wrapperCol: {span: 14},
+};
+
+/**
+ * @generated
+ */
+const buttonItemLayout = {
+    wrapperCol: {span: 14, offset: 4},
 };
 
 /**
@@ -54,7 +61,27 @@ export const fields: IFieldConfig[] = [
 /**
  * @generated
  */
-export const TaskDetailsForm: React.FC<IOwnProps> = (props) => {
+const getButtons = (props: IOwnProps): IButtonConfig[] => [
+    {
+        enabled: () => !props.match.params.id,
+        htmlType: 'submit',
+        key: 'create',
+        label: 'Create',
+        type: 'primary',
+    },
+    {
+        enabled: () => !!props.match.params.id,
+        htmlType: 'submit',
+        key: 'edit',
+        label: 'Edit',
+        type: 'primary',
+    },
+];
+
+/**
+ * @generated
+ */
+export const TaskTaskEditForm: React.FC<IOwnProps> = (props) => {
     const {
         match: {
             params: {id},
@@ -64,17 +91,28 @@ export const TaskDetailsForm: React.FC<IOwnProps> = (props) => {
     const [form] = AntdForm.useForm<ITask>();
 
     React.useEffect(() => {
-        getTask(id).then((task) => {
-            form.setFieldsValue(task);
-            setIsLoading(false);
-        });
+        if (id) {
+            getTask(id).then((task) => {
+                form.setFieldsValue(task);
+                setIsLoading(false);
+            });
+        }
+
+        return () => {
+            form.resetFields();
+        };
     }, [id]);
+
+    const handleSubmit = (values: any) => {
+        console.log('values', values);
+    };
 
     return isLoading ? (
         <Skeleton />
     ) : (
-        <Form {...layout} form={form} layout="horizontal" readonly>
+        <Form {...layout} form={form} layout="horizontal" onFinish={handleSubmit}>
             <FieldSet fields={fields} />
+            <ButtonSet {...buttonItemLayout} buttons={getButtons(props)} />
         </Form>
     );
 };

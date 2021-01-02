@@ -1,8 +1,8 @@
 import {IButtonConfig, ITabRoute, TabsRouter} from '@pragmatic/ui-core';
-import {Button, PageHeader, Tabs} from 'antd';
+import {Button, PageHeader} from 'antd';
 import React from 'react';
 import {RouteComponentProps} from 'react-router-dom';
-import {TaskDetailsForm} from './TaskDetailsForm';
+import {TaskTaskDetailsForm} from './TaskTaskDetailsForm';
 import {TaskTaskStatusList} from './TaskTaskStatusList';
 
 /**
@@ -23,7 +23,7 @@ interface IOwnProps extends RouteComponentProps<IRouteProps> {}
 const getButtons = (props: IOwnProps): IButtonConfig[] => [
     {
         action: () => {
-            props.history.push(`/tasks/${props.match.params.id}/edit`);
+            props.history.push(`/task/task/${props.match.params.id}/edit`);
         },
         enabled: () => true,
         htmlType: 'button',
@@ -48,14 +48,14 @@ const getButtons = (props: IOwnProps): IButtonConfig[] => [
  */
 export const getRoutes = (id: string): ITabRoute[] => [
     {
-        component: TaskDetailsForm,
-        key: `/tasks/${id}/info`,
+        component: TaskTaskDetailsForm,
+        key: `/task/task/${id}/info`,
         label: 'Info',
         path: '/task/task/:id/info',
     },
     {
         component: TaskTaskStatusList,
-        key: `/tasks/${id}/history`,
+        key: `/task/task/${id}/history`,
         label: 'History',
         path: '/task/task/:id/history',
     },
@@ -64,7 +64,7 @@ export const getRoutes = (id: string): ITabRoute[] => [
 /**
  * @generated
  */
-export const TaskCard: React.FC<IOwnProps> = (props) => {
+export const TaskTaskCard: React.FC<IOwnProps> = (props) => {
     const {
         match: {
             params: {id},

@@ -1,7 +1,7 @@
 import {IRoute} from '@pragmatic/ui-core';
-import {TaskEditForm} from './Components/TaskEditForm';
+import {TaskTaskEditForm} from './Components/TaskTaskEditForm';
 import {TaskTaskList} from './Components/TaskTaskList';
-import {TaskCard} from './Components/TaskCard';
+import {TaskTaskCard} from './Components/TaskTaskCard';
 
 /**
  * @generated
@@ -14,18 +14,18 @@ export const Routes: IRoute[] = [
         path: '/task/tasks',
     },
     {
-        component: TaskEditForm,
+        component: TaskTaskEditForm,
         exact: true,
         label: 'Create Task',
         path: '/task/task/create',
     },
     {
-        component: TaskEditForm,
+        component: TaskTaskEditForm,
         label: 'Edit Task',
         path: '/task/task/:id/edit',
     },
     {
-        component: TaskCard,
+        component: TaskTaskCard,
         label: 'Task Details',
         path: '/task/task/:id',
     },

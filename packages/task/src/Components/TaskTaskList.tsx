@@ -86,7 +86,7 @@ const columns: IColumn[] = [
         key: 'actions',
         render: (id: string) => (
             <Space size="middle">
-                <Link to={`/tasks/${id}/info`}>View</Link>
+                <Link to={`/task/task/${id}/info`}>View</Link>
             </Space>
         ),
     },

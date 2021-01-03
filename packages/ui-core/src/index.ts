@@ -1,3 +1,4 @@
+import {IActionConfig} from './Components/Actions';
 import {IFieldConfig} from './Components/Form/Components/FieldSet';
 import {IButtonConfig} from './Components/Form/Components/ButtonSet';
 import {ITabRoute} from './Components/TabsRouter';
@@ -6,6 +7,7 @@ import {IRoute} from './Models';
 import './styles.css';
 
 export {API} from './Service';
+export {Actions} from './Components/Actions';
 export {Breadcrumbs} from './Components/Breadcrumbs';
 export {AutoComplete} from './Components/AutoComplete';
 export {LookupLabel} from './Components/Lookup/LookupLabel';
@@ -21,4 +23,4 @@ export {TabsRouter} from './Components/TabsRouter';
 export {Tags} from './Components/Tags';
 export {renderRoutes} from './renderRoutes';
 
-export type {IButtonConfig, IFieldConfig, IRoute, ITabRoute, IColumn, IFilterProps};
+export type {IButtonConfig, IFieldConfig, IRoute, ITabRoute, IColumn, IFilterProps, IActionConfig};

@@ -1,5 +1,5 @@
-import {IButtonConfig, ITabRoute, TabsRouter} from '@pragmatic/ui-core';
-import {Button, PageHeader} from 'antd';
+import {Actions, IActionConfig, ITabRoute, TabsRouter} from '@pragmatic/ui-core';
+import {PageHeader} from 'antd';
 import React from 'react';
 import {RouteComponentProps} from 'react-router-dom';
 import {TaskTaskDetailsForm} from './TaskTaskDetailsForm';
@@ -20,26 +20,24 @@ interface IOwnProps extends RouteComponentProps<IRouteProps> {}
 /**
  * @generated
  */
-const getButtons = (props: IOwnProps): IButtonConfig[] => [
+const getActions = (props: IOwnProps): IActionConfig[] => [
     {
         action: () => {
             props.history.push(`/task/task/${props.match.params.id}/edit`);
         },
         enabled: () => true,
-        htmlType: 'button',
         key: 'edit',
         label: 'Edit',
-        type: 'primary',
     },
     {
         action: () => {
             console.log('Not implemented');
         },
+        confirm: true,
+        confirmLabel: 'Are you sure?',
         enabled: () => true,
-        htmlType: 'button',
         key: 'delete',
         label: 'Delete',
-        type: 'default',
     },
 ];
 
@@ -73,16 +71,9 @@ export const TaskTaskCard: React.FC<IOwnProps> = (props) => {
 
     return (
         <PageHeader
-            extra={getButtons(props)
-                .filter((btn) => btn.enabled())
-                .map(({action, htmlType, key, label, type}) => (
-                    <Button htmlType={htmlType} key={key} onClick={action} type={type}>
-                        {label}
-                    </Button>
-                ))}
+            extra={<Actions actions={getActions(props)} />}
             ghost={false}
             onBack={() => window.history.back()}
-            // tags={<TaskTaskStatusLookupLabel id={id} />} TODO: нужен компонент, который по id таска фетчит детали и по id статуса резолвит лейбл статуса.
             title={`Task ${id}`}
         >
             <TabsRouter routes={getRoutes(id)} />

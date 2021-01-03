@@ -5,6 +5,7 @@ import {ColProps} from 'antd/lib/grid/col';
 
 export interface IButtonConfig {
     action?: () => void;
+    confirm?: boolean;
     enabled: () => boolean;
     htmlType: ButtonHTMLType;
     key: string;

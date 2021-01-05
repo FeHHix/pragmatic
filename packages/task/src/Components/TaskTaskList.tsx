@@ -1,4 +1,4 @@
-import {FilterInput, IColumn, Table, Tags} from '@pragmatic/ui-core';
+import {FilterInput, IColumn, Labels, Table} from '@pragmatic/ui-core';
 import {Skeleton, Space} from 'antd';
 import React from 'react';
 import {Link, RouteComponentProps} from 'react-router-dom';
@@ -39,7 +39,7 @@ const columns: IColumn[] = [
     {
         dataIndex: 'tags',
         key: 'tags',
-        render: (tags: string[]) => <Tags tags={tags} />,
+        render: (tags: string[]) => <Labels labels={tags} />,
         title: 'Tags',
     },
     {

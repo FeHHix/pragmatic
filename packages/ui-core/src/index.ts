@@ -20,7 +20,7 @@ export {FormAutoComplete} from './Components/Form/Components/FormAutoComplete';
 export {Table} from './Components/Table';
 export {FilterInput} from './Components/Table/Components/FilterInput';
 export {TabsRouter} from './Components/TabsRouter';
-export {Tags} from './Components/Tags';
+export {Labels} from './Components/Labels';
 export {renderRoutes} from './renderRoutes';
 
 export type {IButtonConfig, IFieldConfig, IRoute, ITabRoute, IColumn, IFilterProps, IActionConfig};

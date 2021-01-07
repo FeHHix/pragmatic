@@ -74,6 +74,9 @@ export class AutoComplete extends React.Component<IAutoCompleteProps, IState> {
     componentDidUpdate(prevProps: IAutoCompleteProps) {
         const {value} = this.props;
 
+        console.log('current', value);
+        console.log('prev', prevProps.value);
+
         if (value !== prevProps.value && value === '') {
             this.setState(getInitialState(value));
         }

@@ -1,5 +1,5 @@
 import {FilterInput, IColumn, Labels, Table} from '@pragmatic/ui-core';
-import {Skeleton, Space} from 'antd';
+import {Button, Skeleton, Space} from 'antd';
 import React from 'react';
 import {Link, RouteComponentProps} from 'react-router-dom';
 import {getTasks} from '../Service';
@@ -8,6 +8,7 @@ import 'antd/dist/antd.css';
 import {ITask, ITaskFilter} from '../Models';
 import {TaskTaskStatusLookupLabel} from './TaskTaskStatusLookupLabel';
 import {TaskUserAutoComplete} from './TaskUserAutoComplete';
+import {TaskTaskListFilterModal} from './TaskTaskListFilterModal';
 
 /**
  * @generated
@@ -82,9 +83,17 @@ function getInitialState(): IState {
 /**
  * @generated
  */
+function getInitialFilter(): ITaskFilter {
+    return {};
+}
+
+/**
+ * @generated
+ */
 export const TaskTaskList: React.FC<RouteComponentProps> = () => {
     const [state, setState] = React.useState<IState>(getInitialState());
-    const [filter, setFilter] = React.useState<ITaskFilter>({});
+    const [filter, setFilter] = React.useState<ITaskFilter>(getInitialFilter());
+    const [showFilter, setShowFilter] = React.useState<boolean>(false);
     const {isLoading, tasks} = state;
 
     React.useEffect(() => {
@@ -105,11 +114,26 @@ export const TaskTaskList: React.FC<RouteComponentProps> = () => {
         setFilter((prevFilter) => ({...prevFilter, [dataIndex]: null}));
     };
 
-    console.log('filter', filter);
+    const handleResetAllFilters = () => {
+        setFilter(getInitialFilter());
+    };
+
+    const handleToggleFilterPanel = () => {
+        setShowFilter((prevShowFilter) => !prevShowFilter);
+    };
 
     return isLoading ? (
         <Skeleton />
     ) : (
-        <Table columns={columns} dataSource={tasks} onFilter={handleFilter} onResetFilter={handleResetFilter} />
+        <>
+            <div style={{marginBottom: 16}}>
+                <Button onClick={handleToggleFilterPanel} type="primary">
+                    Filter
+                </Button>
+                <Button onClick={handleResetAllFilters}>Reset</Button>
+            </div>
+            <TaskTaskListFilterModal filter={filter} onClose={handleToggleFilterPanel} onFilter={handleFilter} showModal={showFilter} />
+            <Table columns={columns} dataSource={tasks} onFilter={handleFilter} onResetFilter={handleResetFilter} />
+        </>
     );
 };

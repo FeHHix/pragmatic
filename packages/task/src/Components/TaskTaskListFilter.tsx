@@ -1,5 +1,4 @@
-import {FieldSet, Form, IFieldConfig} from '@pragmatic/ui-core';
-import {DatePicker} from 'antd';
+import {DatePicker, FieldSet, Form, IFieldConfig} from '@pragmatic/ui-core';
 import {FormInstance} from 'antd/lib/form';
 import React from 'react';
 import {ITaskFilter} from '../Models';

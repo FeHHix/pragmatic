@@ -8,8 +8,9 @@ import './styles.css';
 
 export {API} from './Service';
 export {Actions} from './Components/Actions';
-export {Breadcrumbs} from './Components/Breadcrumbs';
 export {AutoComplete} from './Components/AutoComplete';
+export {Breadcrumbs} from './Components/Breadcrumbs';
+export {DatePicker} from './Components/DatePicker';
 export {LookupLabel} from './Components/Lookup/LookupLabel';
 export {Form} from './Components/Form';
 export {FieldSet} from './Components/Form/Components/FieldSet';

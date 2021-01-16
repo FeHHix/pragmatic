@@ -4,7 +4,7 @@ import {ITask, ITaskFilter, ITaskStatus} from './Models';
 /**
  * @generated
  */
-export const getTasks = (filter?: ITaskFilter): Promise<ITask[]> => Api.get(`${API_URL}/tasks`);
+export const getTasks = (filter: ITaskFilter): Promise<ITask[]> => Api.get(`${API_URL}/tasks`, filter);
 
 /**
  * @generated

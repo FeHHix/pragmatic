@@ -20,10 +20,11 @@ export const TaskTaskListFilterModal: React.FC<IOwnProps> = ({filter, onClose, o
     const [form] = Form.useForm<ITaskFilter>();
 
     React.useEffect(() => {
-        form.setFieldsValue({statusHistoryStatus: filter.statusHistoryStatus});
+        form.setFieldsValue({...filter});
 
         return () => {
             form.resetFields();
+            console.log('will unmount');
         };
     }, [filter]);
 

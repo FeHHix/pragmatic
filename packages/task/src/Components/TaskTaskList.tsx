@@ -1,4 +1,4 @@
-import {FilterInput, IColumn, Labels, Table} from '@pragmatic/ui-core';
+import {FilterInput, IColumn, json2qs, Labels, qs2json, Table} from '@pragmatic/ui-core';
 import {Button, Skeleton, Space} from 'antd';
 import React from 'react';
 import {Link, RouteComponentProps} from 'react-router-dom';
@@ -83,20 +83,22 @@ function getInitialState(): IState {
 /**
  * @generated
  */
-function getInitialFilter(): ITaskFilter {
-    return {};
+function getInitialFilter(queryParams?: string): ITaskFilter {
+    return queryParams ? qs2json(queryParams) : {};
 }
 
 /**
  * @generated
  */
-export const TaskTaskList: React.FC<RouteComponentProps> = () => {
+export const TaskTaskList: React.FC<RouteComponentProps> = ({history, location}) => {
     const [state, setState] = React.useState<IState>(getInitialState());
-    const [filter, setFilter] = React.useState<ITaskFilter>(getInitialFilter());
+    const [filter, setFilter] = React.useState<ITaskFilter>(getInitialFilter(location.search));
     const [showFilter, setShowFilter] = React.useState<boolean>(false);
     const {isLoading, tasks} = state;
 
     React.useEffect(() => {
+        history.push(`/task/tasks?${json2qs(filter)}`);
+
         getTasks(filter)
             .then((tasks) => {
                 setState({isLoading: false, tasks});
@@ -111,7 +113,7 @@ export const TaskTaskList: React.FC<RouteComponentProps> = () => {
     };
 
     const handleResetFilter = (dataIndex: string) => {
-        setFilter((prevFilter) => ({...prevFilter, [dataIndex]: null}));
+        setFilter((prevFilter) => ({...prevFilter, [dataIndex]: undefined}));
     };
 
     const handleResetAllFilters = () => {
@@ -133,7 +135,7 @@ export const TaskTaskList: React.FC<RouteComponentProps> = () => {
                 <Button onClick={handleResetAllFilters}>Reset</Button>
             </div>
             <TaskTaskListFilterModal filter={filter} onClose={handleToggleFilterPanel} onFilter={handleFilter} showModal={showFilter} />
-            <Table columns={columns} dataSource={tasks} onFilter={handleFilter} onResetFilter={handleResetFilter} />
+            <Table columns={columns} dataSource={tasks} filter={filter} onFilter={handleFilter} onResetFilter={handleResetFilter} />
         </>
     );
 };

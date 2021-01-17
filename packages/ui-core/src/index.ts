@@ -6,6 +6,7 @@ import {IColumn, IFilterProps} from './Components/Table/Models';
 import {IRoute} from './Models';
 import './styles.css';
 
+export {json2qs, qs2json} from './ApiUtils';
 export {API} from './Service';
 export {Actions} from './Components/Actions';
 export {AutoComplete} from './Components/AutoComplete';

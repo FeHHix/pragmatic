@@ -7,6 +7,8 @@
     "/pragmatic/api/v1/rest/tasks\\?assignee=:assignee": "/tasks?assignee=:assignee",
     "/pragmatic/api/v1/rest/tasks\\?summary=:summary": "/tasks?summary=:summary",
     "/pragmatic/api/v1/rest/tasks\\?statusHistoryStatus=:statusHistoryStatus": "/tasks?status=:statusHistoryStatus",
+    "/pragmatic/api/v1/rest/tasks\\?statusHistoryDateFrom=:statusHistoryDateFrom": "/tasks?statusHistoryDateFrom=:statusHistoryDateFrom",
+    "/pragmatic/api/v1/rest/tasks\\?statusHistoryDateTo=:statusHistoryDateTo": "/tasks?statusHistoryDateTo=:statusHistoryDateTo",
     "/pragmatic/api/v1/rest/tasks/:id": "/tasks/:id",
     "/pragmatic/api/v1/rest/users": "/users",
     "/pragmatic/api/v1/rest/users/:id": "/users/:id",

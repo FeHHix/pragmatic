@@ -9,6 +9,7 @@ import {ITask, ITaskFilter} from '../Models';
 import {TaskTaskStatusLookupLabel} from './TaskTaskStatusLookupLabel';
 import {TaskUserAutoComplete} from './TaskUserAutoComplete';
 import {TaskTaskListFilterModal} from './TaskTaskListFilterModal';
+import { TaskStatusAutoComplete } from './TaskStatusAutoComplete';
 
 /**
  * @generated
@@ -44,6 +45,7 @@ const columns: IColumn[] = [
         title: 'Tags',
     },
     {
+        componentFilter: TaskStatusAutoComplete,
         title: 'Status',
         key: 'status',
         dataIndex: 'status',
@@ -90,14 +92,14 @@ function getInitialFilter(queryParams?: string): ITaskFilter {
 /**
  * @generated
  */
-export const TaskTaskList: React.FC<RouteComponentProps> = ({history, location}) => {
+export const TaskTaskList: React.FC<RouteComponentProps> = ({history, location: {pathname, search}}) => {
     const [state, setState] = React.useState<IState>(getInitialState());
-    const [filter, setFilter] = React.useState<ITaskFilter>(getInitialFilter(location.search));
+    const [filter, setFilter] = React.useState<ITaskFilter>(getInitialFilter(search));
     const [showFilter, setShowFilter] = React.useState<boolean>(false);
     const {isLoading, tasks} = state;
 
     React.useEffect(() => {
-        history.push(`/task/tasks?${json2qs(filter)}`);
+        history.push(`${pathname}?${json2qs(filter)}`);
 
         getTasks(filter)
             .then((tasks) => {

@@ -2,7 +2,6 @@ import {DatePicker, FieldSet, Form, IFieldConfig} from '@pragmatic/ui-core';
 import {FormInstance} from 'antd/lib/form';
 import React from 'react';
 import {ITaskFilter} from '../Models';
-import {TaskStatusAutoComplete} from './TaskStatusAutoComplete';
 
 /**
  * @generated
@@ -15,11 +14,6 @@ interface IOwnProps {
  * @generated
  */
 const fields: IFieldConfig[] = [
-    {
-        label: 'Status',
-        name: 'statusHistoryStatus',
-        render: () => <TaskStatusAutoComplete />,
-    },
     {
         label: 'Status history from',
         name: 'statusHistoryDateFrom',

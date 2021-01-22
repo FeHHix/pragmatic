@@ -9,7 +9,9 @@ import {ITask, ITaskFilter} from '../Models';
 import {TaskTaskStatusLookupLabel} from './TaskTaskStatusLookupLabel';
 import {TaskUserAutoComplete} from './TaskUserAutoComplete';
 import {TaskTaskListFilterModal} from './TaskTaskListFilterModal';
-import { TaskStatusAutoComplete } from './TaskStatusAutoComplete';
+import {TaskStatusAutoComplete} from './TaskStatusAutoComplete';
+import {TaskTagAutoComplete} from './TaskTagAutoComplete';
+import { TaskTaskTagLookupLabel } from './TaskTaskTagLookupLabel';
 
 /**
  * @generated
@@ -39,9 +41,10 @@ const columns: IColumn[] = [
         title: 'Summary',
     },
     {
+        componentFilter: TaskTagAutoComplete,
         dataIndex: 'tags',
         key: 'tags',
-        render: (tags: string[]) => <Labels labels={tags} />,
+        render: (tags: string[]) => tags.map((tag) => <TaskTaskTagLookupLabel id={tag} />),
         title: 'Tags',
     },
     {

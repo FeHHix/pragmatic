@@ -24,7 +24,6 @@ export const TaskTaskListFilterModal: React.FC<IOwnProps> = ({filter, onClose, o
 
         return () => {
             form.resetFields();
-            console.log('will unmount');
         };
     }, [filter]);
 

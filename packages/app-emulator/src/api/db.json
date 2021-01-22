@@ -8,7 +8,7 @@
             "name": "Task 1",
             "status": "11",
             "summary": "Task Summary 1",
-            "tags": ["nice", "developer"]
+            "tags": ["444", "333"]
         },
         {
             "assignee": "2",
@@ -18,7 +18,7 @@
             "name": "Task 2",
             "status": "22",
             "summary": "Task Summary 2",
-            "tags": ["nice", "developer"]
+            "tags": ["444", "333"]
         },
         {
             "assignee": "3",
@@ -28,7 +28,7 @@
             "name": "Task 3",
             "status": "33",
             "summary": "Task Summary 3",
-            "tags": ["cool", "manager"]
+            "tags": ["111", "222"]
         }
     ],
     "taskStatuses": [
@@ -43,6 +43,24 @@
         {
             "id": "33",
             "name": "ON HOLD"
+        }
+    ],
+    "taskTags": [
+        {
+            "id": "111",
+            "name": "cool"
+        },
+        {
+            "id": "222",
+            "name": "manager"
+        },
+        {
+            "id": "333",
+            "name": "developer"
+        },
+        {
+            "id": "444",
+            "name": "nice"
         }
     ],
     "users": [

@@ -30,3 +30,11 @@ export interface ITaskStatus {
     id: string;
     name: string;
 }
+
+/**
+ * @generated
+ */
+export interface ITaskTag {
+    id: string;
+    name: string;
+}

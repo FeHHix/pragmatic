@@ -1,4 +1,4 @@
-import {FilterInput, IColumn, json2qs, Labels, qs2json, Table} from '@pragmatic/ui-core';
+import {FilterInput, IColumn, json2qs, qs2json, Table} from '@pragmatic/ui-core';
 import {Button, Skeleton, Space} from 'antd';
 import React from 'react';
 import {Link, RouteComponentProps} from 'react-router-dom';
@@ -8,10 +8,10 @@ import 'antd/dist/antd.css';
 import {ITask, ITaskFilter} from '../Models';
 import {TaskTaskStatusLookupLabel} from './TaskTaskStatusLookupLabel';
 import {TaskUserAutoComplete} from './TaskUserAutoComplete';
-import {TaskTaskListFilterModal} from './TaskTaskListFilterModal';
+import {TaskTaskListFilter} from './TaskTaskListFilter';
 import {TaskStatusAutoComplete} from './TaskStatusAutoComplete';
 import {TaskTagAutoComplete} from './TaskTagAutoComplete';
-import { TaskTaskTagLookupLabel } from './TaskTaskTagLookupLabel';
+import {TaskTaskTagLookupLabel} from './TaskTaskTagLookupLabel';
 
 /**
  * @generated
@@ -139,7 +139,7 @@ export const TaskTaskList: React.FC<RouteComponentProps> = ({history, location: 
                 </Button>
                 <Button onClick={handleResetAllFilters}>Reset</Button>
             </div>
-            <TaskTaskListFilterModal filter={filter} onClose={handleToggleFilterPanel} onFilter={handleFilter} showModal={showFilter} />
+            <TaskTaskListFilter filter={filter} onClose={handleToggleFilterPanel} onFilter={handleFilter} show={showFilter} />
             <Table columns={columns} dataSource={tasks} filter={filter} onFilter={handleFilter} onResetFilter={handleResetFilter} />
         </>
     );

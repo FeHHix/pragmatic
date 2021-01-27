@@ -23,6 +23,7 @@ export {Table} from './Components/Table';
 export {FilterInput} from './Components/Table/Components/FilterInput';
 export {TabsRouter} from './Components/TabsRouter';
 export {Labels} from './Components/Labels';
+export {useModal} from './Components/useModal';
 export {renderRoutes} from './renderRoutes';
 
 export type {IButtonConfig, IFieldConfig, IRoute, ITabRoute, IColumn, IFilterProps, IActionConfig};

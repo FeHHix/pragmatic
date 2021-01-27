@@ -1,16 +1,18 @@
-import {DatePicker, FieldSet, Form, FormInput, IFieldConfig} from '@pragmatic/ui-core';
-import {FormInstance} from 'antd/lib/form';
+import {DatePicker, FieldSet, Form, FormInput, IFieldConfig, useModal} from '@pragmatic/ui-core';
 import React from 'react';
 import {ITaskFilter} from '../Models';
-import { TaskStatusAutoComplete } from './TaskStatusAutoComplete';
-import { TaskTagAutoComplete } from './TaskTagAutoComplete';
-import { TaskUserAutoComplete } from './TaskUserAutoComplete';
+import {TaskStatusAutoComplete} from './TaskStatusAutoComplete';
+import {TaskTagAutoComplete} from './TaskTagAutoComplete';
+import {TaskUserAutoComplete} from './TaskUserAutoComplete';
 
 /**
  * @generated
  */
 interface IOwnProps {
-    form: FormInstance<ITaskFilter>;
+    filter: ITaskFilter;
+    onClose: () => void;
+    onFilter: (filter: ITaskFilter) => void;
+    show: boolean;
 }
 
 /**
@@ -67,8 +69,14 @@ const fields: IFieldConfig[] = [
 /**
  * @generated
  */
-export const TaskTaskListFilter: React.FC<IOwnProps> = ({form}) => (
-    <Form form={form} layout="inline">
-        <FieldSet fields={fields} />
-    </Form>
-);
+export const TaskTaskListFilter: React.FC<IOwnProps> = ({filter, onClose, onFilter, show}) => {
+    const {form, Modal} = useModal<ITaskFilter>({form: filter, onClose, onSubmit: onFilter});
+
+    return (
+        <Modal title="Filter" showModal={show}>
+            <Form form={form} layout="inline">
+                <FieldSet fields={fields} />
+            </Form>
+        </Modal>
+    );
+};

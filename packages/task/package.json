@@ -1,24 +1,22 @@
 {
-  "name": "@pragmatic/app",
+  "name": "@pragmatic/task",
   "version": "1.0.0",
-  "description": "Pragmatic App project",
-  "main": "src/index.tsx",
+  "description": "Pragmatic Tasks project",
+  "main": "src/index.ts",
   "author": "FeHHix",
   "license": "MIT",
   "scripts": {
-    "dev": "webpack serve"
+    "build": "webpack"
   },
   "dependencies": {
     "@pragmatic/dev-utils": "1.0.0",
-    "@pragmatic/task": "1.0.0",
+    "@pragmatic/ui-core": "1.0.0",
     "antd": "4.9.2",
     "react": "16.14.0",
     "react-dom": "16.14.0",
-    "react-router-config": "^5.1.1",
     "react-router-dom": "^5.2.0"
   },
   "devDependencies": {
-    "@types/react-router-config": "^5.0.2",
     "@types/react-router-dom": "^5.1.6"
   }
 }

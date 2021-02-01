@@ -11,7 +11,7 @@ export interface IFieldConfig {
     label: string;
     name?: string;
     render: () => JSX.Element;
-    rules: Rule[];
+    rules?: Rule[];
 }
 
 /**

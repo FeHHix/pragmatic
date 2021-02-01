@@ -1,29 +1,40 @@
 import React from 'react';
-import { lookup } from './Service';
-import { Skeleton } from 'antd';
+import {lookup} from './Service';
+import {Skeleton} from 'antd';
 
+/**
+ * @generated
+ */
 interface IOwnProps {
     id: string;
-    onResolve: (rs: any) => string; // TODO: должен быть рендер компонента для span
+    renderLabel: (rs: any) => JSX.Element;
     url: string;
 }
 
+/**
+ * @generated
+ */
 interface IState {
     isLoading: boolean;
     rs?: unknown;
 }
 
-export const LookupLabel: React.FC<IOwnProps> = ({id, onResolve, url}) => {
+/**
+ * @generated
+ */
+export const LookupLabel: React.FC<IOwnProps> = ({id, renderLabel, url}) => {
     const [state, setState] = React.useState<IState>({isLoading: true});
     const {isLoading, rs} = state;
 
     React.useEffect(() => {
-        lookup(url)(id).then((rs) => {
-            setState({isLoading: false, rs});
-        }).catch(() => {
-            setState({isLoading: false});
-        });
+        lookup(url)(id)
+            .then((rs) => {
+                setState({isLoading: false, rs});
+            })
+            .catch(() => {
+                setState({isLoading: false});
+            });
     }, [id]);
 
-    return isLoading ? <Skeleton.Button /> : <span>{onResolve(rs)}</span>;
+    return isLoading ? <Skeleton.Button /> : renderLabel(rs);
 };

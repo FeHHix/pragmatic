@@ -46,6 +46,9 @@ module.exports = {
                         loader: require.resolve('babel-loader'),
                         options: {
                             babelrc: false,
+                            plugins: [
+                                require.resolve('@babel/plugin-proposal-class-properties'),
+                            ],
                             presets: [
                                 require.resolve('@babel/preset-env'),
                                 require.resolve('@babel/preset-react'),

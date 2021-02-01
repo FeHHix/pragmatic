@@ -1,20 +1,24 @@
 import {Form} from 'antd';
 import React from 'react';
-import { ColProps } from 'antd/lib/grid/col';
+import {FormProps} from 'antd/lib/form/Form';
+import {FormContext} from './FormContext';
 
 /**
  * @generated
  */
-interface IOwnProps {
-    labelCol?: ColProps;
-    wrapperCol?: ColProps;
+interface IOwnProps extends FormProps {
+    readonly?: boolean;
 }
 
 /**
  * @generated
  */
-const FormComponent: React.FC<IOwnProps> = ({children, ...props}) => {
-    return <Form {...props}>{children}</Form>;
+const FormComponent: React.FC<IOwnProps> = ({children, readonly = false, ...props}) => {
+    return (
+        <Form {...props}>
+            <FormContext.Provider value={{readonly}}>{children}</FormContext.Provider>
+        </Form>
+    );
 };
 
-export {FormComponent as Form};
+export {FormComponent as Form, FormContext};
